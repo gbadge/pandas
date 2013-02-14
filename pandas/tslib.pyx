@@ -21,7 +21,7 @@ from datetime cimport *
 from khash cimport *
 cimport cython
 
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 from dateutil.parser import parse as parse_date
 
 cdef extern from "Python.h":
