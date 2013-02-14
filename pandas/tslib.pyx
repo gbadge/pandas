@@ -279,6 +279,21 @@ class Timestamp(_Timestamp):
         return Timestamp(datetime.replace(self, **kwds),
                          offset=self.offset)
 
+    def to_pydate(self, warn=True):
+        """
+        If warn=True, issue warning if nanoseconds is nonzero
+        """
+        cdef:
+            pandas_datetimestruct dts
+            _TSObject ts
+
+        if self.nanosecond != 0 and warn:
+            print 'Warning: discarding nonzero nanoseconds'
+        ts = convert_to_tsobject(self, self.tzinfo)
+
+        return date(ts.dts.year, ts.dts.month, ts.dts.day)
+
+
     def to_pydatetime(self, warn=True):
         """
         If warn=True, issue warning if nanoseconds is nonzero

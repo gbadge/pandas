@@ -657,13 +657,13 @@ class DatetimeIndex(Int64Index):
 
     def to_pydate(self):
         """
-        Return DatetimeIndex as object ndarray of datetime.datetime objects
+        Return DatetimeIndex as object ndarray of datetime.date objects
 
         Returns
         -------
-        datetimes : ndarray
+        dates : ndarray
         """
-        return tslib.ints_to_pydatetime(self.asi8, tz=self.tz)
+        return tslib.ints_to_pydate(self.asi8, tz=self.tz)
       
       
     def to_pydatetime(self):
