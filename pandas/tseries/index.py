@@ -654,6 +654,18 @@ class DatetimeIndex(Int64Index):
         boxed_values = lib.map_infer(self.asi8, boxfunc)
         return Index(boxed_values, dtype=object)
 
+
+    def to_pydate(self):
+        """
+        Return DatetimeIndex as object ndarray of datetime.datetime objects
+
+        Returns
+        -------
+        datetimes : ndarray
+        """
+        return tslib.ints_to_pydatetime(self.asi8, tz=self.tz)
+      
+      
     def to_pydatetime(self):
         """
         Return DatetimeIndex as object ndarray of datetime.datetime objects
